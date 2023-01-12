@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" > 
+
+<xsd:element name="releve">
+ <xsd:complexType>
+     <xsd:sequence>
+         <xsd:element name="dateReleve" type="xsd:date"/>
+         <xsd:element name="solde" type="xsd:double"/>
+         <xsd:element name="operations" type="OPERATION-LIST"></xsd:element>
+         
+     </xsd:sequence>
+     <xsd:attribute name="RIB"  use="required">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:integer">
+                <xsd:totalDigits value="24"></xsd:totalDigits>
+            </xsd:restriction>
+        </xsd:simpleType> 
+         
+     </xsd:attribute>
+ </xsd:complexType>
+    
+</xsd:element>
+    
+    <xsd:complexType name="OPERATION-LIST">
+        
+        <xsd:sequence>
+            <xsd:element name="operation" minOccurs="0" maxOccurs="unbounded" type="OPERATION-ITEM">
+                
+            </xsd:element>
+        </xsd:sequence>
+        
+        <xsd:attribute name="dateDebut" type="xsd:date" use="optional"></xsd:attribute>
+        <xsd:attribute name="dateFin" type="xsd:date" use="optional"></xsd:attribute>
+    </xsd:complexType>
+    
+    
+    <xsd:complexType name="OPERATION-ITEM">
+        <xsd:attribute name="type" use="required">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="DEBIT"></xsd:enumeration>
+                    <xsd:enumeration value="CREDIT"></xsd:enumeration>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="date" type="xsd:date" use="required"></xsd:attribute>
+        <xsd:attribute name="montant" type="xsd:double" use="required"></xsd:attribute>
+        <xsd:attribute name="description" type="xsd:string" use="required"></xsd:attribute>
+    </xsd:complexType>
+
+</xsd:schema>

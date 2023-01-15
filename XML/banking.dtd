@@ -3,6 +3,7 @@
 <!ELEMENT dateReleve (#PCDATA) >
 <!ELEMENT solde  (#PCDATA) >
 <!ELEMENT operations (operation*) >
+<!ELEMENT operation EMPTY >
 
 
 <!ATTLIST releve 

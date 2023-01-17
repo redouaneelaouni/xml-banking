@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="f45e125b-644f-4271-8013-a7be9abd8eca" activeEnvironment="Default" name="banking" resourceRoot="" soapui-version="5.7.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="4198cc00-285e-492a-9d0d-f15e5054d588" wsaVersion="NONE" name="ReleveWSPortBinding" type="wsdl" bindingName="{http://IIBDCC.ma/}ReleveWSPortBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/HCKB6758/Documents/xml-banking/B.%20C.%20oxm-jaxWS-banking/wsdl-banking.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\Users\HCKB6758\Documents\xml-banking\B.%20C.%20oxm-jaxWS-banking\wsdl-banking.xml"><con:part><con:url>file:\C:\Users\HCKB6758\Documents\xml-banking\B.%20C.%20oxm-jaxWS-banking\wsdl-banking.xml</con:url><con:content><![CDATA[<definitions targetNamespace="http://IIBDCC.ma/" name="ReleveServiceService" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://IIBDCC.ma/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://IIBDCC.ma/" schemaLocation="http://localhost:9191/?xsd=1"/>
+    </xsd:schema>
+  </types>
+  <message name="getReleve">
+    <part name="parameters" element="tns:getReleve"/>
+  </message>
+  <message name="getReleveResponse">
+    <part name="parameters" element="tns:getReleveResponse"/>
+  </message>
+  <portType name="ReleveWS">
+    <operation name="getReleve">
+      <input wsam:Action="http://IIBDCC.ma/ReleveWS/getReleveRequest" message="tns:getReleve"/>
+      <output wsam:Action="http://IIBDCC.ma/ReleveWS/getReleveResponse" message="tns:getReleveResponse"/>
+    </operation>
+  </portType>
+  <binding name="ReleveWSPortBinding" type="tns:ReleveWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="getReleve">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="ReleveServiceService">
+    <port name="ReleveWSPort" binding="tns:ReleveWSPortBinding">
+      <soap:address location="http://localhost:9191/"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:9191/?xsd=1</con:url><con:content><![CDATA[<!--Published by XML-WS Runtime (https://github.com/eclipse-ee4j/metro-jax-ws). Runtime's version is XML-WS Runtime 4.0.0 git-revision#129f787.-->
+<xs:schema version="1.0" targetNamespace="http://IIBDCC.ma/" xmlns:tns="http://IIBDCC.ma/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="getReleve" type="tns:getReleve"/>
+  <xs:element name="getReleveResponse" type="tns:getReleveResponse"/>
+  <xs:element name="releve" type="tns:releve"/>
+  <xs:complexType name="getReleve">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getReleveResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:releve" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="releve">
+    <xs:sequence>
+      <xs:element name="dateReleve" type="xs:string" minOccurs="0"/>
+      <xs:element name="solde" type="xs:double" minOccurs="0"/>
+      <xs:element name="operations" type="tns:operations" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="RIB  " type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="operations">
+    <xs:sequence>
+      <xs:element name="operation" type="tns:operation" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="dateDebut" type="xs:string"/>
+    <xs:attribute name="dateFin" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="operation">
+    <xs:sequence/>
+    <xs:attribute name="type" type="tns:type"/>
+    <xs:attribute name="montant" type="xs:double"/>
+    <xs:attribute name="description" type="xs:string"/>
+    <xs:attribute name="date" type="xs:string"/>
+  </xs:complexType>
+  <xs:simpleType name="type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DEBIT"/>
+      <xs:enumeration value="CREDIT"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:9191/</con:endpoint></con:endpoints><con:operation id="438af08e-acfc-4698-833e-39a2f6309a4d" isOneWay="false" action="" name="getReleve" bindingOperationName="getReleve" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f5ead7f8-7554-4696-9ccb-207cbe8bf457" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9191/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:iib="http://IIBDCC.ma/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <iib:getReleve/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://IIBDCC.ma/ReleveWS/getReleveRequest"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

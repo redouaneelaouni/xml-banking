@@ -1,22 +1,17 @@
 package ma.IIBDCC;
 
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.Marshaller;
+import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
 
-import java.io.File;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-public class BankingXMLSerialization {
+@WebService(name = "ReleveWS")
+public class ReleveService {
 
-	public static void main(String[] args) throws Exception {
-
-		JAXBContext context = JAXBContext.newInstance(Releve.class);
-		Marshaller marshaller = context.createMarshaller();
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
+	@WebMethod(operationName = "getReleve")
+	public Releve getReleve(){
 
 		List<Operation> operationList = List.of(
 				new Operation(Type.CREDIT,10000.0,"encaissement de la part de Mohamed", LocalDate.of(2022, Month.FEBRUARY,1)),
@@ -27,10 +22,6 @@ public class BankingXMLSerialization {
 
 		Operations operations = new Operations(LocalDate.of(2022, Month.JANUARY,1),LocalDate.of(2022, Month.DECEMBER,31),operationList);
 
-		Releve releve = new Releve("112233445566778899001122",LocalDate.now(),23000.00,operations);
-
-		marshaller.marshal(releve,System.out);
-		marshaller.marshal(releve,new File("releve.xml"));
-
+		return new Releve("112233445566778899001122",LocalDate.now(),23000.00,operations);
 	}
 }

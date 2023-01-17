@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by XML-WS Runtime (https://github.com/eclipse-ee4j/metro-jax-ws). Runtime's version is XML-WS Runtime 4.0.0 git-revision#129f787. --><xs:schema xmlns:tns="http://IIBDCC.ma/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://IIBDCC.ma/">
+
+<xs:element name="getReleve" type="tns:getReleve"/>
+
+<xs:element name="getReleveResponse" type="tns:getReleveResponse"/>
+
+<xs:element name="releve" type="tns:releve"/>
+
+<xs:complexType name="getReleve">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getReleveResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:releve" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="releve">
+<xs:sequence>
+<xs:element name="dateReleve" type="xs:string" minOccurs="0"/>
+<xs:element name="solde" type="xs:double" minOccurs="0"/>
+<xs:element name="operations" type="tns:operations" minOccurs="0"/>
+</xs:sequence>
+<xs:attribute name="RIB  " type="xs:string"/>
+</xs:complexType>
+
+<xs:complexType name="operations">
+<xs:sequence>
+<xs:element name="operation" type="tns:operation" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+<xs:attribute name="dateDebut" type="xs:string"/>
+<xs:attribute name="dateFin" type="xs:string"/>
+</xs:complexType>
+
+<xs:complexType name="operation">
+<xs:sequence/>
+<xs:attribute name="type" type="tns:type"/>
+<xs:attribute name="montant" type="xs:double"/>
+<xs:attribute name="description" type="xs:string"/>
+<xs:attribute name="date" type="xs:string"/>
+</xs:complexType>
+
+<xs:simpleType name="type">
+<xs:restriction base="xs:string">
+<xs:enumeration value="DEBIT"/>
+<xs:enumeration value="CREDIT"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>
